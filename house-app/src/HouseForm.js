@@ -1,24 +1,52 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 
 
 function HouseForm(){
 
-    const [newHouse, setNewHouse] = useState({
+    const [formData, setFormData] = useState({
         address: "",
         ownerName: "",
         color: "",
         occupants: "",
         isAvailable: false
     })
-    
+
+    function handleSubmit(e){
+        e.preventDefault();
+        
+        fetch("http://localhost:3000/houses", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        }).then(res => res.json()).then(console.log)
+    }
+
+
+    function handleChange(e) {
+        const name = e.target.name
+        let value = e.target.value
+
+        if(e.target.type === 'checkbox')
+        {
+            value = e.target.checked
+        }
+        setFormData({
+        ...formData,
+        [name]: value
+    })
+}
+
     
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Address"></input>
-            <input type="text" placeholder="Owner Name"></input>
-            <input type="text" placeholder="Color"></input>
-            <input type="text" placeholder="Occupants"></input>
-            <input type="checkbox">Is House Available?</input>
+        <form onSubmit={e => handleSubmit(e)}>
+            <input id="1" name="address" type="text" placeholder="Address" onChange={handleChange}/>
+            <input id="2" name="ownerName" type="text" placeholder="Owner Name"onChange={handleChange}/>
+            <input id="3" name="color" type="text" placeholder="Color"onChange={handleChange}/>
+            <input id="4" name="occupants" type="text" placeholder="Occupants"onChange={handleChange}/>
+            <input id="5" name="isAvailable" type="checkbox" onChange={handleChange}/>
+            <label for="5">Is house available?</label>
             <button>Submit</button>
         </form>
     )

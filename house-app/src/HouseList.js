@@ -6,11 +6,9 @@ function HouseList({houses}) {
 
     const [showHouse, setShowHouse] = useState([])
 
-    function handleClick() {
+    function handleClick(e) {
         const houseId = e.target.id
-        useEffect(()=> {
-            fetch(`http://localhost:3000/houses/${houseId}`).then((r) => r.json()).then(setShowHouse)
-        },[])
+        fetch(`http://localhost:3000/houses/${houseId}`).then((r) => r.json()).then(setShowHouse)
         
         return (<HouseItem house={showHouse}/>)
     }
@@ -18,10 +16,9 @@ function HouseList({houses}) {
 return ( 
     <ul>
     {houses.map((house) => {
-        <>
+      <>
       <li>{house.address}</li>
-      <button id={house.id} onClick={handleClick}>Show Details</button>
-      
+      <button id={house.id} onClick={e => handleClick(e)}>Show Details</button>
       </>
     })}
     </ul>

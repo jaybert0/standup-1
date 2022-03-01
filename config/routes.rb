@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :houses, only:[:index, :create, :show, :update, :destroy] 
-  # resources :houses, except:[:new, :edit] 
+  resources :houses
 
   # HTTP VERB -- URL/Route -- ACTION/method
   # get 'houses', to: 'houses#index' #read -- index / show ALL

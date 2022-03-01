@@ -38,8 +38,10 @@ class HousesController < ApplicationController #== RESPONSE
     render json: {}, status: :ok
   end
 
+
   private
   def house_params #SECURITY
     params.permit(:owner_name, :occupants, :address, :home_available, :color)
   end
+
 end
