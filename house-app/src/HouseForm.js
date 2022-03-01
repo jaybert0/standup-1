@@ -5,10 +5,10 @@ function HouseForm(){
 
     const [formData, setFormData] = useState({
         address: "",
-        ownerName: "",
+        owner_name: "",
         color: "",
         occupants: "",
-        isAvailable: false
+        home_available: false
     })
 
     function handleSubmit(e){
@@ -42,11 +42,11 @@ function HouseForm(){
     return (
         <form onSubmit={e => handleSubmit(e)}>
             <input id="1" name="address" type="text" placeholder="Address" onChange={handleChange}/>
-            <input id="2" name="ownerName" type="text" placeholder="Owner Name"onChange={handleChange}/>
+            <input id="2" name="owner_name" type="text" placeholder="Owner Name"onChange={handleChange}/>
             <input id="3" name="color" type="text" placeholder="Color"onChange={handleChange}/>
             <input id="4" name="occupants" type="text" placeholder="Occupants"onChange={handleChange}/>
-            <input id="5" name="isAvailable" type="checkbox" onChange={handleChange}/>
-            <label for="5">Is house available?</label>
+            <input id="5" name="home_available" type="checkbox" onChange={handleChange}/>
+            <label htmlFor="5">Is house available?</label>
             <button>Submit</button>
         </form>
     )

@@ -1,7 +1,7 @@
 import React from "react";
 
 function HouseItem({house}) {
-
+    console.log(house)
     return (
         <ul>
             <li>{house.owner_name}</li>
